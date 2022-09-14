@@ -1,0 +1,36 @@
+
+Warning: Use of undefined constant MATURITY_ALPHA - assumed 'MATURITY_ALPHA' (this will throw an Error in a future version of PHP) in /var/www/html/mod/iconactivatecontent/version.php on line 31
+
+Call Stack:
+    0.0983     455904   1. {main}() /var/www/html/update_db_watcher.php:0
+    0.2519     576640   2. include('/var/www/html/mod/iconactivatecontent/version.php') /var/www/html/update_db_watcher.php:64
+
+<?php
+	if ($oldversion < 2022082500) {
+    $dbman = $DB->get_manager();
+
+
+// ##################### MODIFY TABLE iconactivatecontent
+    $table = new xmldb_table('iconactivatecontent');
+// ------------ add key fk_course
+    $key = new xmldb_key('fk_course', XMLDB_KEY_FOREIGN, array('course'));
+    $dbman->add_key($table, $key);
+
+
+// ##################### CREATE NEW TABLE iconactivatecontent_shorturl
+    $table = new xmldb_table('iconactivatecontent_shorturl');
+//----------------- add field id
+    $table->add_field('id', XMLDB_TYPE_INTEGER, '10', NULL, true, true, NULL);
+//----------------- add field shorturl
+    $table->add_field('shorturl', XMLDB_TYPE_CHAR, '255', NULL, true, false, NULL);
+//----------------- add field fullurl
+    $table->add_field('fullurl', XMLDB_TYPE_TEXT, '400', NULL, true, false, NULL);
+//-------------add key primary
+    $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+//-------------add key shorturl
+    $table->add_key('shorturl', XMLDB_KEY_UNIQUE, array('shorturl'));
+    if (!$dbman->table_exists($table)) {
+		$dbman->create_table($table);
+	}
+    upgrade_mod_savepoint(true, 2022082500, 'iconactivatecontent');
+}

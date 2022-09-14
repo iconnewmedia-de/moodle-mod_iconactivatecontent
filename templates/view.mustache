@@ -1,0 +1,25 @@
+<div class="card externalcontent" id="{{info.id}}" {{{style}}}>
+    <div class="card-header bold">
+        {{info.headline}}
+    </div>
+    <div class="card-body">
+        {{{info.icon}}}
+        <div class="externalcontent-info">
+        {{info.body}}
+        </div>
+        <div class="externalcontent-container"></div>
+        <div class="activation-toggler">
+            <button class="activation-toggle-button inactive" data-id="{{info.id}}">
+                <div class="activation-toggle-pill">&nbsp;</div>
+            </button>
+            <span>{{info.externalcontent}}</span>
+        </div>
+        <template>
+            {{{info.template}}}
+        </template>
+    </div>
+
+    <div class="card-footer">
+        {{info.footer}}
+    </div>
+</div>

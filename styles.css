@@ -1,0 +1,73 @@
+.iconactivatecontent .activation-toggle-button {
+    width: 60px;
+    appearance: none;
+    border: 1px solid #999;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0;
+    margin-right: 10px;
+}
+.iconactivatecontent .activation-toggle-pill {
+    height: 26px;
+    width: 26px;
+    border-radius: 13px;
+    display: block;
+    background: #999;
+    position: relative;
+    left: 1px;
+    top: 0;
+    margin: 0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.iconactivatecontent .content-activated .card-header,
+.iconactivatecontent .content-activated .card-footer,
+.iconactivatecontent .content-activated .external-platform-icon,
+.iconactivatecontent .content-activated .externalcontent-info {
+    display: none;
+}
+
+.iconactivatecontent .external-platform-icon img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.iconactivatecontent .content-activated .activation-toggle-pill {
+    margin-left: 30px;
+}
+
+.iconactivatecontent .activation-toggler {
+    margin: 20px 0;
+}
+
+.iconactivatecontent .externalcontent {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.iconactivatecontent .externalcontent .card-footer {
+    font-size: 0.8em;
+}
+.iconactivatecontent .external-platform-icon {
+    float: right;
+    width: 70px;
+    height: 70px;
+}
+.iconactivatecontent_iconpreview {
+    background: #ccc;
+    max-width: 100px;
+    border: 1px solid #f9f9f9;
+}
+.section .activity.modtype_iconactivatecontent .contentwithoutlink {
+    display: block;
+}
+.iconactivatecontent .about-image {
+    margin-bottom: 20px;
+}
+.iconactivatecontent.dimmed,
+.iconactivatecontent .dimmed {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.iconactivatecontent .externalcontent-container iframe {
+    max-width: 100%;
+}
