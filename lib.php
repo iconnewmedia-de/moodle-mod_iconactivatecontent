@@ -123,6 +123,16 @@ function iconactivatecontent_delete_instance($id) {
 }
 
 /**
+ * calls the init function for the JavaScript toggler to work
+ *
+ * @param cm_info $cm Course-module object
+ */
+function iconactivatecontent_cm_info_view(cm_info $cm) {
+    global $PAGE;
+    $PAGE->requires->js_call_amd('mod_iconactivatecontent/activate', 'init');
+}
+
+/**
  * Given a course_module object, this function returns any
  * "extra" information that may be needed when printing
  * this activity in a course listing.
@@ -134,8 +144,6 @@ function iconactivatecontent_delete_instance($id) {
  */
 function iconactivatecontent_get_coursemodule_info($coursemodule) {
     global $DB, $OUTPUT, $PAGE, $CFG;
-
-    $PAGE->requires->js_call_amd('mod_iconactivatecontent/activate', 'init');
     if ($iconactivatecontent = $DB->get_record('iconactivatecontent', array('id' => $coursemodule->instance), '*')) {
         if (empty($iconactivatecontent->name)) {
             $iconactivatecontent->name = "iconactivatecontent{$iconactivatecontent->id}";
