@@ -24,9 +24,6 @@
 
 defined('MOODLE_INTERNAL') || die();
 require_once(__DIR__ . "/locallib.php");
-global $PAGE;
-
-$PAGE->requires->js_call_amd('mod_iconactivatecontent/activate', 'init');
 
 /**
  * Return if the plugin supports $feature.
@@ -137,6 +134,8 @@ function iconactivatecontent_delete_instance($id) {
  */
 function iconactivatecontent_get_coursemodule_info($coursemodule) {
     global $DB, $OUTPUT, $PAGE, $CFG;
+
+    $PAGE->requires->js_call_amd('mod_iconactivatecontent/activate', 'init');
     if ($iconactivatecontent = $DB->get_record('iconactivatecontent', array('id' => $coursemodule->instance), '*')) {
         if (empty($iconactivatecontent->name)) {
             $iconactivatecontent->name = "iconactivatecontent{$iconactivatecontent->id}";
@@ -253,7 +252,8 @@ function iconactivatecontent_pluginfile($course,
     $fullpath = "/{$context->id}/mod_iconactivatecontent/$filearea/$itemid/$relativepath";
 
     $fs = get_file_storage();
-    if (!$file = $fs->get_file_by_hash(sha1($fullpath)) or $file->is_directory()) {
+    $file = $fs->get_file_by_hash(sha1($fullpath));
+    if (!$file || $file->is_directory()) {
         return false;
     }
     send_stored_file($file, 0, 0, $forcedownload, $options);
